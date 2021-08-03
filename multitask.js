@@ -7,6 +7,8 @@ const fs = require('fs');
 
 const start = Date.now();
 
+//env for multiple threads
+process.env.UV_THREADPOOL_SIZE= 5;
 
 function doRequest() {
     https.request('https://www.google.com', res => {
@@ -18,9 +20,9 @@ function doRequest() {
     }).end();
 }
 
-function doHash() {
+function doHash(number) {
     crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
-        console.log('Hash:', Date.now() - start);
+        console.log('Hash:', Date.now() - start, number);
         //benchmark the time taken for Hashing alfo
     });
 }
@@ -32,8 +34,7 @@ fs.readFile('multitask.js', 'utf8', () => {
     //benchmark the time taken for performing IO
 });
 
-doHash();
-doHash();
-doHash();
-doHash();
-
+doHash(1);
+doHash(2);
+doHash(3);
+doHash(4);
