@@ -24,7 +24,6 @@ crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
 });
 
 // result before adding process.env 
-
 // 2: 700
 // 1: 709
 // 3: 710
@@ -32,7 +31,6 @@ crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
 // 5: 1253
 
 // result after adding process.env 
-
 // 1: 1241
 // 2: 1264
 // 5: 1345
